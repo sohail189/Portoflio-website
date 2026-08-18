@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Sohail | Data Scientist & AI Engineer</title>
+<meta name="description" content="Muhammad Sohail — Data Science graduate building and deploying ML, NLP, and RAG-based applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1B2E42;
+    --navy-light: #243447;
+    --steel: #4A6080;
+    --silver: #8EA5BF;
+    --mist: #C8D8E8;
+    --fog: #EEF3F8;
+    --white: #FFFFFF;
+    --accent: #2E7FC1;
+    --accent-dark: #1A5A8E;
+    --accent-light: #E8F2FB;
+    --text-body: #3A4A5C;
+    --text-muted: #6E87A0;
+    --border: #D9E4EF;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --radius: 6px;
+    --radius-lg: 12px;
+    --max-w: 1100px;
+    --nav-h: 68px;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--text-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--steel);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--nav-h) + 4rem) clamp(1.5rem, 5vw, 3rem) 6rem;
+    background: var(--fog);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 55%;
+    height: 130%;
+    background: var(--navy);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 0.35rem 0.875rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 .line-accent { color: var(--accent); display: block; }
+
+  .hero-desc {
+    font-size: 1.0625rem;
+    color: var(--steel);
+    max-width: 42ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: var(--navy);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--navy);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  /* hero right — stats card */
+  .hero-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: 0 12px 48px rgba(13,27,42,0.12);
+  }
+
+  .hero-card-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+ .avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--accent);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+  .avatar-info p { margin: 0; }
+  .avatar-name { font-size: 1rem; font-weight: 600; color: var(--navy); }
+  .avatar-role { font-size: 0.8125rem; color: var(--text-muted); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-box {
+    background: var(--fog);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .status-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: #1A7A45;
+    font-weight: 500;
+  }
+
+  .status-dot::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22C55E;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem clamp(1.5rem, 5vw, 3rem); }
+  .section-inner { max-width: var(--max-w); margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.0625rem;
+    color: var(--steel);
+    max-width: 52ch;
+    margin-bottom: 3.5rem;
+    line-height: 1.75;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-body);
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .highlight-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .highlight-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(46,127,193,0.08);
+  }
+
+  .highlight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .highlight-icon svg { color: var(--accent); }
+
+  .highlight-content h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+
+  .highlight-content p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--fog); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(13,27,42,0.10);
+  }
+
+  .project-banner {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .project-body { padding: 1.5rem; }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .tag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    background: var(--fog);
+    color: var(--steel);
+    border: 1px solid var(--border);
+  }
+
+  .project-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .link-btn {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+  }
+
+  .link-btn:hover { color: var(--accent-dark); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--white); }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .skills-nav {
+    position: sticky;
+    top: calc(var(--nav-h) + 2rem);
+  }
+
+  .skill-category-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--steel);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 0.25rem;
+  }
+
+  .skill-category-btn.active,
+  .skill-category-btn:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  .skill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .skills-content { display: none; }
+  .skills-content.active { display: block; }
+
+  .skill-group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skills-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .skill-chip {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-body);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    cursor: default;
+  }
+
+  .skill-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .skill-chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+
+  .dot-strong { background: var(--navy); }
+  .dot-mid { background: var(--silver); }
+  .dot-new { background: #1A7A45; }
+
+  .skill-chip .new-flag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1A7A45;
+    background: #E4F5EA;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+
+  #contact .section-eyebrow { color: var(--silver); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-sub { color: var(--silver); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(200,216,232,0.15);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    background: rgba(46,127,193,0.08);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius);
+    background: rgba(200,216,232,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg { width: 18px; height: 18px; color: var(--mist); }
+
+  .contact-item-text p { margin: 0; }
+  .contact-label { font-size: 0.75rem; color: var(--silver); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-value { font-size: 0.9375rem; color: var(--white); font-weight: 500; }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .field label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--silver);
+    letter-spacing: 0.04em;
+  }
+
+  .field input,
+  .field textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(200,216,232,0.2);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    resize: none;
+    width: 100%;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--steel); }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--accent);
+    background: rgba(46,127,193,0.08);
+  }
+
+  .btn-send {
+    align-self: flex-start;
+    padding: 0.875rem 2.25rem;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-send:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #081420;
+    padding: 2rem clamp(1.5rem, 5vw, 3rem);
+    border-top: 1px solid rgba(200,216,232,0.08);
+  }
+
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--silver);
+    text-decoration: none;
+  }
+
+  .footer-copy { font-size: 0.8125rem; color: var(--steel); }
+
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .footer-socials a {
+    font-size: 0.8125rem;
+    color: var(--steel);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-socials a:hover { color: var(--silver); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .hero-inner, .about-grid, .contact-grid, .skills-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero::before { display: none; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    .nav-links { display: none; }
+
+    .hero-card { display: none; }
+
+    .skills-nav { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Muhammad<span>.</span>Sohail</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-tag">Open to Data Analyst & Data Engineer roles</span>
+      <h1>
+        AI Engineer &
+        <span class="line-accent">Data Scientist</span>
+      </h1>
+      <p class="hero-desc">I design and ship practical machine learning, NLP, and RAG-based applications — turning raw data into production-ready APIs and tools people actually use, end to end.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">
+          View my work
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn-secondary">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-head">
+        <div class="avatar">
+        <img src="assets/sohail.jpg" alt="Muhammad Sohail">
+      </div>
+        <div class="avatar-info">
+          <p class="avatar-name">Muhammad Sohail</p>
+          <p class="avatar-role">AI Engineer</p>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Projects deployed</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">AI/ML</div>
+          <div class="stat-label">Primary focus</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Tools & frameworks</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Focus areas</div>
+        </div>
+      </div>
+      <div class="status-dot">Open to full-time & remote roles</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-eyebrow">About me</p>
+        <h2 class="section-title">From data to deployed AI systems</h2>
+        <p>Hi, I'm Sohail — an AI Engineer and Data Scientist who enjoys taking messy, real-world data and turning it into something people can actually use. I focus on building and deploying practical machine learning and LLM-based applications, not just prototypes that stay in a notebook.</p>
+        <p>My project work spans classical ML (classification, XGBoost, feature engineering), NLP and generative AI (RAG pipelines with LangChain, ChromaDB, and Groq), and backend deployment with FastAPI, Docker, and CI/CD. Each project goes from raw data through to a working, deployed application.</p>
+        <p>I'm currently looking for Data Analyst and Data Engineer opportunities, with particular interest in the Gulf region, where I can keep building end-to-end data and AI systems.</p>
+        <br>
+
+        <a
+          href="assets/Muhammad_Sohail_Resume.pdf"
+          download="Muhammad_Sohail_Resume.pdf"
+          class="btn-primary"
+          style="display: inline-flex;"
+        >
+          Download Resume
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+        </a>
+
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <div class="highlight-content">
+            <h4>End-to-end ML delivery</h4>
+            <p>From data cleaning and model training to deployment with Streamlit, FastAPI, and Docker.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="highlight-content">
+            <h4>LLM & RAG systems</h4>
+            <p>Built retrieval-augmented generation pipelines with LangChain, ChromaDB, and the Groq/OpenAI APIs.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
+          </div>
+          <div class="highlight-content">
+            <h4>Data analysis & visualization</h4>
+            <p>Comfortable with EDA, statistical testing, and building dashboards in Power BI and SQL.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+          </div>
+          <div class="highlight-content">
+            <h4>Always learning</h4>
+            <p>Currently deepening my skills in agentic AI workflows, cloud deployment, and production-grade ML systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-eyebrow">Selected work</p>
+    <h2 class="section-title">Projects I'm proud of</h2>
+    <p class="section-sub">A selection of end-to-end ML, NLP, and GenAI projects, taken from data to deployment.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-banner" style="background: #E1F5EE; color: #0F6E56;">
+          <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">GenAI</span><span class="tag">RAG</span><span class="tag">LangChain</span><span class="tag">Streamlit</span>
+          </div>
+          <h3 class="project-title">Pakistan Tourist RAG System</h3>
+          <p class="project-desc">An end-to-end Retrieval-Augmented Generation system that answers natural-language tourism questions about Pakistan. Uses LangChain and ChromaDB for semantic retrieval and the Groq API to generate grounded, low-hallucination responses, deployed as an interactive Streamlit app.</p>
+          <div class="project-links">
+            <a href="https://github.com/sohail189" target="_blank" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              View on GitHub
+            </a>
+            <a href="case-study-pakistan-tourist-rag.html" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Case Study
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: #E8F2FB; color: #185FA5;">
+          <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">NLP</span><span class="tag">Scikit-learn</span><span class="tag">Streamlit</span>
+          </div>
+          <h3 class="project-title">Resume Scanner System</h3>
+          <p class="project-desc">An AI-powered resume screening app that extracts text from PDF, DOCX, and TXT resumes, applies NLP preprocessing and TF-IDF vectorization, and classifies resumes into job categories to automate a manual screening step.</p>
+          <div class="project-links">
+            <a href="https://github.com/sohail189/resume-scanner-system-" target="_blank" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              View on GitHub
+            </a>
+            <a href="case-study-resume-scanner.html" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Case Study
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: #EEEDFE; color: #534AB7;">
+          <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="0.6" fill="currentColor"/><circle cx="7" cy="17" r="0.6" fill="currentColor"/></svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
+          </div>
+          <h3 class="project-title">FastAPI ML API</h3>
+          <p class="project-desc">Trained ML models exposed as REST endpoints using FastAPI for easy integration with external applications, containerized with Docker for portable deployment, with a GitHub Actions workflow automating build and validation.</p>
+          <div class="project-links">
+            <a href="https://github.com/sohail189" target="_blank" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              View on GitHub
+            </a>
+            <a href="case-study-fastapi-ml-api.html" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Case Study
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-banner" style="background: #FAECE7; color: #993C1D;">
+          <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C12 21 4 13.5 4 8.5A4.5 4.5 0 0112 5.5A4.5 4.5 0 0120 8.5C20 13.5 12 21 12 21z"/></svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Scikit-learn</span><span class="tag">Classification</span><span class="tag">EDA</span>
+          </div>
+          <h3 class="project-title">Liver & Heart Disease Prediction</h3>
+          <p class="project-desc">Two end-to-end classification projects covering data cleaning, EDA, and feature engineering, comparing multiple ML models and deploying the best-performing ones as an interactive Streamlit app.</p>
+          <div class="project-links">
+            <a href="https://github.com/sohail189" target="_blank" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              View on GitHub
+            </a>
+            <a href="case-study-disease-prediction.html" class="link-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Case Study
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-eyebrow">Technical skills</p>
+    <h2 class="section-title">Technical Expertise</h2>
+    <p class="section-sub">
+    Experience across AI/ML, Generative AI & RAG, backend API development, and data analysis & visualization.
+    </p>
+    <div class="skills-layout">
+      <div class="skills-nav">
+        <button class="skill-category-btn active" onclick="showSkills('languages')">
+          <span class="skill-dot"></span> Languages
+        </button>
+        <button class="skill-category-btn" onclick="showSkills('ai')">
+          <span class="skill-dot"></span> AI & ML
+        </button>
+        <button class="skill-category-btn" onclick="showSkills('genai')">
+          <span class="skill-dot"></span> GenAI & NLP
+        </button>
+        <button class="skill-category-btn" onclick="showSkills('backend')">
+          <span class="skill-dot"></span> Backend & Data
+        </button>
+        <button class="skill-category-btn" onclick="showSkills('tools')">
+          <span class="skill-dot"></span> Deployment & Tools
+        </button>
+      </div>
+
+      <div>
+
+        <div id="skills-languages" class="skills-content active">
+          <p class="skill-group-title">Programming Languages</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>Python</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>SQL</span>
+          </div>
+        </div>
+
+        <div id="skills-ai" class="skills-content">
+          <p class="skill-group-title">Machine Learning</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>Supervised Learning</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>Unsupervised Learning</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>Classification</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>Regression</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Clustering</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>XGBoost</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>CatBoost</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Random Forest</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Model Evaluation</span>
+            <span class="skill-chip"><span class="dot dot-new"></span>MLflow<span class="new-flag">New</span></span>
+          </div>
+        </div>
+
+        <div id="skills-genai" class="skills-content">
+          <p class="skill-group-title">LLM & Generative AI</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>LangChain</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>RAG</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>ChromaDB</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Groq API</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>OpenAI API</span>
+            <span class="skill-chip"><span class="dot dot-new"></span>LangGraph<span class="new-flag">New</span></span>
+            <span class="skill-chip"><span class="dot dot-new"></span>LlamaIndex<span class="new-flag">New</span></span>
+            <span class="skill-chip"><span class="dot dot-new"></span>Hugging Face Transformers<span class="new-flag">New</span></span>
+            <span class="skill-chip"><span class="dot dot-new"></span>Prompt Engineering<span class="new-flag">New</span></span>
+          </div>
+          <p class="skill-group-title">NLP</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>Text Extraction & Processing</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>TF-IDF Vectorization</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Text Classification</span>
+          </div>
+        </div>
+
+        <div id="skills-backend" class="skills-content">
+          <p class="skill-group-title">Backend / API</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>FastAPI</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>REST API Development</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Pydantic</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>PostgreSQL</span>
+            <span class="skill-chip"><span class="dot dot-new"></span>Vector Databases (FAISS/Pinecone)<span class="new-flag">New</span></span>
+          </div>
+          <p class="skill-group-title">Data</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>Pandas</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>NumPy</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>Feature Engineering</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>EDA</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Data Cleaning & Wrangling</span>
+            <span class="skill-chip"><span class="dot dot-new"></span>Apache Airflow<span class="new-flag">New</span></span>
+          </div>
+        </div>
+
+        <div id="skills-tools" class="skills-content">
+          <p class="skill-group-title">MLOps / Deployment</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>Docker</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>Streamlit</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>GitHub Actions (CI/CD)</span>
+            <span class="skill-chip"><span class="dot dot-strong"></span>Git / GitHub</span>
+            <span class="skill-chip"><span class="dot dot-new"></span>Kubernetes (basics)<span class="new-flag">New</span></span>
+            <span class="skill-chip"><span class="dot dot-new"></span>AWS / Cloud Basics<span class="new-flag">New</span></span>
+          </div>
+          <p class="skill-group-title">Visualization & Statistics</p>
+          <div class="skills-chips">
+            <span class="skill-chip"><span class="dot dot-strong"></span>Power BI</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Matplotlib</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Seaborn</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Plotly</span>
+            <span class="skill-chip"><span class="dot dot-mid"></span>Hypothesis / A-B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-eyebrow">Contact</p>
+    <h2 class="section-title">Let's work together</h2>
+    <p class="section-sub">Open to Data Analyst, Data Engineer, and AI/ML roles — full-time or remote. I typically respond within 24 hours.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <a href="mailto:sm7933494@gmail.com" class="contact-item">
+          <div class="contact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <p class="contact-label">Email</p>
+            <p class="contact-value">sm7933494@gmail.com</p>
+          </div>
+        </a>
+        <a href="tel:+923407788425" class="contact-item">
+          <div class="contact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <p class="contact-label">Phone</p>
+            <p class="contact-value">+92 340 7788425</p>
+          </div>
+        </a>
+        <a href="https://github.com/sohail189" class="contact-item" target="_blank">
+          <div class="contact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <p class="contact-label">GitHub</p>
+            <p class="contact-value">sohail189</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Contact form: opens the visitor's email app addressed to sm7933494@gmail.com. -->
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="subject">Subject</label>
+          <input id="subject" type="text" placeholder="What's this about?">
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="Tell me about your project or opportunity…" required></textarea>
+        </div>
+        <button type="submit" class="btn-send" id="send-btn">
+          Send message
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <p id="form-msg" style="display:none; font-size:0.875rem; margin-top:0.5rem;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Muhammad Sohail</a>
+    <p class="footer-copy">© 2026 Muhammad Sohail. All rights reserved.</p>
+    <ul class="footer-socials">
+      <li><a href="https://github.com/sohail189" target="_blank">GitHub</a></li>
+      <li><a href="mailto:sm7933494@gmail.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Contact form: opens the visitor's default email app with a pre-filled
+  // message addressed to sm7933494@gmail.com. No third-party form service
+  // required. If you later want silent in-page submission, sign up for your
+  // own Formspree (formspree.io) or EmailJS account and swap this out.
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-msg');
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value || ('Portfolio contact from ' + name);
+    const message = document.getElementById('message').value;
+
+    const body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
+    const mailtoLink = 'mailto:sm7933494@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailtoLink;
+
+    msg.textContent = "Opening your email app to send this message…";
+    msg.style.color = '#8EA5BF';
+    msg.style.display = 'block';
+  });
+
+  function showSkills(id) {
+    document.querySelectorAll('.skills-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.skill-category-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('skills-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // Scroll-based nav highlight
+  const sections = ['about','projects','skills','contact'];
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id ? 'var(--navy)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>

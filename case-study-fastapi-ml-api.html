@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FastAPI ML API | Case Study | Muhammad Sohail</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0D1B2A; --steel: #4A6080; --silver: #8EA5BF;
+    --fog: #EEF3F8; --white: #FFFFFF; --border: #D9E4EF;
+    --accent: #534AB7; --accent-light: #EEEDFE; --text-body: #3A4A5C; --text-muted: #6E87A0;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --max-w: 780px; --radius: 8px; --radius-lg: 14px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--white); color: var(--text-body); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  nav { padding: 1.25rem clamp(1.5rem,5vw,3rem); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); z-index: 10; }
+  .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--navy); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .back-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 500; color: var(--steel); text-decoration: none; transition: color 0.2s; }
+  .back-btn:hover { color: var(--navy); }
+  .hero { background: var(--accent-light); padding: 5rem clamp(1.5rem,5vw,3rem) 4rem; text-align: center; }
+  .hero-icon { width: 72px; height: 72px; border-radius: 20px; background: var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+  .hero-icon svg { color: white; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+  .tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 2rem; background: white; color: var(--accent); border: 1px solid rgba(83,74,183,0.25); }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(2rem,5vw,3rem); font-weight: 500; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
+  .hero p { font-size: 1.0625rem; color: var(--steel); max-width: 52ch; margin: 0 auto; }
+  .meta-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: center; flex-wrap: wrap; }
+  .meta-item { padding: 1.25rem 2.5rem; text-align: center; border-right: 1px solid var(--border); }
+  .meta-item:last-child { border-right: none; }
+  .meta-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.25rem; }
+  .meta-value { font-size: 0.9375rem; font-weight: 600; color: var(--navy); }
+  .content { max-width: var(--max-w); margin: 0 auto; padding: 4rem clamp(1.5rem,5vw,2rem) 6rem; }
+  .section { margin-bottom: 3.5rem; }
+  .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.625rem; }
+  h2 { font-family: var(--font-display); font-size: 1.625rem; font-weight: 500; color: var(--navy); margin-bottom: 1rem; line-height: 1.3; }
+  p { color: var(--text-body); margin-bottom: 1rem; font-size: 1rem; }
+  p:last-child { margin-bottom: 0; }
+  .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .callout p { color: var(--navy); font-weight: 500; margin: 0; }
+  .outcome-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1.5rem; }
+  .outcome-card { background: var(--fog); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; }
+  .outcome-number { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--accent); line-height: 1; margin-bottom: 0.375rem; }
+  .outcome-label { font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; }
+  .stack-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .stack-chip { padding: 0.4rem 0.9rem; border-radius: var(--radius); border: 1px solid var(--border); font-size: 0.875rem; font-weight: 500; color: var(--text-body); background: var(--white); }
+  .challenge-list { list-style: none; display: flex; flex-direction: column; gap: 0.875rem; margin-top: 1rem; }
+  .challenge-list li { display: flex; gap: 0.875rem; align-items: flex-start; }
+  .challenge-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.6rem; }
+  .cta-bar { background: var(--navy); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; margin-top: 4rem; }
+  .cta-bar h3 { font-family: var(--font-display); font-size: 1.5rem; color: white; margin-bottom: 0.625rem; }
+  .cta-bar p { color: var(--silver); margin-bottom: 1.5rem; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: var(--accent); color: white; font-size: 0.9375rem; font-weight: 500; border-radius: var(--radius); text-decoration: none; transition: opacity 0.2s; }
+  .cta-btn:hover { opacity: 0.88; }
+  @media (max-width: 600px) { .outcome-grid { grid-template-columns: 1fr 1fr; } .meta-item { padding: 1rem 1.25rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Muhammad<span>.</span>Sohail</a>
+  <a href="index.html#projects" class="back-btn">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to projects
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-icon">
+    <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="0.6" fill="currentColor"/><circle cx="7" cy="17" r="0.6" fill="currentColor"/></svg>
+  </div>
+  <div class="tag-row">
+    <span class="tag">FastAPI</span>
+    <span class="tag">Docker</span>
+    <span class="tag">CI/CD</span>
+  </div>
+  <h1>FastAPI ML API</h1>
+  <p>A containerized REST API that turns trained ML models into production-ready, easily-integrated endpoints, with automated build and validation on every push.</p>
+</div>
+
+<div class="meta-strip">
+  <div class="meta-item"><p class="meta-label">Role</p><p class="meta-value">Backend / ML Engineer</p></div>
+  <div class="meta-item"><p class="meta-label">Type</p><p class="meta-value">REST API / MLOps</p></div>
+  <div class="meta-item"><p class="meta-label">Users</p><p class="meta-value">Developers & Internal Apps</p></div>
+  <div class="meta-item"><p class="meta-label">Status</p><p class="meta-value">Public / Open Source</p></div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <p class="section-label">The Problem</p>
+    <h2>Trained models are easy to build and hard to actually use</h2>
+    <p>A lot of ML work ends at a Jupyter notebook — the model performs well on a test set, but there's no clean way for another application, teammate, or frontend to actually call it. Without a proper API layer, "deploying" a model usually means someone copy-pasting a pickle file and hoping for the best.</p>
+    <p>The goal of this project was to build a reusable pattern for turning any trained model into a documented, containerized, testable API — something that could sit behind a real application in production, not just a demo.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">My Approach</p>
+    <h2>Treating the model as a service, not a script</h2>
+    <p>I approached this less like a modeling project and more like a backend engineering one, focused on reliability, validation, and repeatable deployment.</p>
+    <ul class="challenge-list">
+      <li>Wrapped trained models behind FastAPI endpoints with Pydantic models for strict request and response validation, catching malformed input before it ever reaches the model.</li>
+      <li>Added health-check and metadata endpoints so the API's status and model version can be verified without reading logs.</li>
+      <li>Containerized the whole service with Docker so it runs identically in local development, testing, and production environments.</li>
+      <li>Set up a GitHub Actions workflow that builds the container, runs tests, and validates the API on every push, catching integration issues before they reach deployment.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <p>Using FastAPI's automatic OpenAPI/Swagger docs turned out to be one of the highest-leverage decisions — anyone integrating with the API gets an interactive, always-up-to-date reference for free, with no extra documentation effort.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Tech Stack</p>
+    <h2>What it was built with</h2>
+    <div class="stack-list">
+      <span class="stack-chip">Python</span>
+      <span class="stack-chip">FastAPI</span>
+      <span class="stack-chip">Pydantic</span>
+      <span class="stack-chip">Uvicorn</span>
+      <span class="stack-chip">Docker</span>
+      <span class="stack-chip">GitHub Actions</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Outcomes</p>
+    <h2>What the pipeline delivers</h2>
+    <div class="outcome-grid">
+      <div class="outcome-card">
+        <div class="outcome-number">Auto</div>
+        <div class="outcome-label">Interactive API docs generated from the code itself</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-number">1</div>
+        <div class="outcome-label">Command to build and run the full service via Docker</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-number">CI/CD</div>
+        <div class="outcome-label">Automated build and validation on every push</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">What I Learned</p>
+    <h2>Key takeaways</h2>
+    <p>Input validation is where most real-world API failures happen, not the model itself. Pydantic schemas that reject bad requests early saved far more debugging time than any amount of model tuning would have.</p>
+    <p>Docker and CI/CD stop being "nice to have" the moment more than one person or environment touches a project. Having the container and pipeline in place from day one made it trivial to move the API between local testing and a deployable environment without surprises.</p>
+  </div>
+
+  <div class="cta-bar">
+    <h3>Interested in working together?</h3>
+    <p>Happy to walk through the API design, validation strategy, or the CI/CD pipeline in more detail.</p>
+    <a href="index.html#contact" class="cta-btn">
+      Get in touch
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>
